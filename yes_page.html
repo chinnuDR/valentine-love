@@ -4,42 +4,101 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Yay ❤️</title>
-  <link rel="stylesheet" href="styles.css">
+
   <style>
     body {
       text-align: center;
-      background: pink;
-      font-family: Arial, sans-serif;
-      padding: 30px;
+      background: linear-gradient(to bottom, #ffe6f0, #fff);
+      font-family: "Poppins", sans-serif;
+      padding: 40px;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Floating Hearts Animation */
+    .heart {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background: red;
+      transform: rotate(-45deg);
+      animation: float 5s linear infinite;
+    }
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background: red;
+      border-radius: 50%;
+    }
+    .heart::before { top: -15px; left: 0; }
+    .heart::after { left: 15px; top: 0; }
+
+    @keyframes float {
+      0% { transform: translateY(0) rotate(-45deg); opacity: 1; }
+      100% { transform: translateY(-600px) rotate(-45deg); opacity: 0; }
     }
 
     h1 {
-      font-size: 2.5rem;
+      font-size: 2.7rem;
       color: #d6005c;
+      margin-top: 20px;
     }
 
-    p {
-      font-size: 1.3rem;
-      margin-top: 15px;
-      color: #333;
+    .images-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .valentine-img {
+      width: 120px;
+      border-radius: 15px;
+      box-shadow: 0px 4px 15px rgba(0,0,0,0.2);
     }
 
     .gif_container img {
-      width: 250px;
+      width: 260px;
+      margin-top: 25px;
+      border-radius: 25px;
+      box-shadow: 0px 6px 20px rgba(0,0,0,0.2);
+    }
+
+    p {
+      font-size: 1.4rem;
       margin-top: 20px;
-      border-radius: 20px;
+      color: #444;
+      line-height: 1.6;
     }
 
     .love-msg {
-      margin-top: 25px;
-      font-size: 1.4rem;
+      margin-top: 30px;
+      font-size: 1.5rem;
       font-weight: bold;
       color: #b30047;
+    }
+
+    .signature {
+      margin-top: 15px;
+      font-size: 1.3rem;
+      color: #ff2f92;
     }
   </style>
 </head>
 
 <body>
+
+  <!-- Floating hearts container -->
+  <div id="hearts"></div>
+
+  <!-- Two Images Above Text -->
+  <div class="images-container">
+    <img src="img1.jpg" alt="Image 1" class="valentine-img">
+    <img src="img3.jpg" alt="Image 3" class="valentine-img">
+  </div>
 
   <h1>Yayyy Deepika ❤️😍</h1>
 
@@ -48,15 +107,42 @@
   </div>
 
   <p>
-    Happy Valentine’s Day 💖<br>
-    You just made Ram the happiest person 🥰
+    Happy Valentine’s Day my dear wife💖<br>
+    You just made Ram the happiest person 🥰<br>
+    Thank you for being in my life ❤️
   </p>
 
   <div class="love-msg">
-    I promise to always care for you ❤️<br>
-    With Love, <br>
-    <span>Ram 💌</span>
+    I promise to always care for you papa 💗<br>
+    Always stay with me 😘
   </div>
+
+  <div class="signature">
+    With Love,<br>
+    <b>Ram , urs KANNA 💌</b>
+  </div>
+
+  <!-- Background Romantic Music -->
+  <audio id="bg-music" src="love.mp3" autoplay loop></audio>
+
+  <!-- Floating Hearts Script -->
+  <script>
+    const heartsContainer = document.getElementById('hearts');
+
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * window.innerWidth + 'px';
+      heart.style.animationDuration = 3 + Math.random() * 2 + 's';
+      heartsContainer.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 5000);
+    }
+
+    setInterval(createHeart, 300);
+  </script>
 
 </body>
 </html>
